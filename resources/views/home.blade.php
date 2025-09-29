@@ -1,1 +1,3 @@
-<h1>Coucou bienvenu</h1>
+
+
+<h1>Coucou {{$name}} bienvenue</h1>

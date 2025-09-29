@@ -11,5 +11,11 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    $username = 'Jean';
+
+    return view('home', ['name' => $username]);
+});
+
+Route::get('/poissons', function () {
+    return view('show');
 });
