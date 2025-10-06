@@ -12,7 +12,7 @@
 
 
     <input @error('name') style="border: 2px solid red" @enderror
-        type="text" name="name" value="{{ old('name') }}" placeholder="Nom" /><br>
+        type="text" name="name" value="{{ old('nom') }}" placeholder="Nom" /><br>
     @error('name')
         <p style="color: red">{{ $message }}</p>
     @enderror
@@ -21,22 +21,18 @@
 
 
     <input @error('price') style="border: 2px solid red" @enderror
-    type="text" name="price" value="{{ old('price') }}" placeholder="Prix" /><br>
+    type="text" name="price" value="{{ old('prix') }}" placeholder="Prix" /><br>
     @error('price')
         <p style="color: red">{{ $message }}</p>
     @enderror
 
     <input @error('picture') style="border: 2px solid red" @enderror
-    type="text" name="picture" value="{{ old('picture') }}" placeholder="Image" /><br>
+    type="text" name="picture" value="{{ old('image') }}" placeholder="Image" /><br>
     @error('picture')
         <p style="color: red">{{ $message }}</p>
     @enderror
 
-    <textarea @error('description') style="border: 2px solid red" @enderror
-    name="description">{{ old('description') }}</textarea><br>
-    @error('description')
-        <p style="color: red">{{ $message }}</p>
-    @enderror
+    
 
     <button name="btnCreate">Créer</button>
 </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\poissonControler;
 use App\Models\poisson;
 use Illuminate\Support\Facades\Route;
 
@@ -26,40 +27,10 @@ Route::get('home', function () {
 
 
 
-Route::get('/poissons', function() {
-    // Aller chercher tous les poissons dans la base
-    $poissons = poisson::all();
-    // Envoyer ces poissons à une vue
-    return view('index', [
-        'poissons' => $poissons
-    ]);
-});
-
-Route::get('/poissons/create', function() {
-    return view('create');
-});
-
-Route::get('/poissons/{id}', function($id) {
-    $poisson = poisson::findOrFail($id);
-    return view('show', [
-        'poisson' => $poisson
-    ]);
-});
-
-Route::post('/poissons', function() {
-    // Valider les données
-    request()->validate([
-        'name' => 'required|string|min:4|max:25',
-        'price' => 'required|decimal:2',
-        'picture' => 'nullable',
-        'description' => 'required|string'
-    ]);
-
-    $s = new poisson;
-    $s->name = request('name');
-    $s->price = request('price')*100;
-    $s->description = request('description');
-    $s->picture = request('picture');
-    $s->save();
-    return redirect('/poissons/'.$s->id);
-});
+Route::get('/poissons',  [poissonControler::class, 'index']);
+Route::get('/poissons/create', [poissonControler::class, 'create']);
+Route::get('/poissons/{id}', [poissonControler::class, 'show']);
+Route::post('/poissons', [poissonControler::class, 'store']);
+Route::get('/poissons/{id}/edit', [poissonControler::class, 'edit']);
+Route::patch('/poissons/{id}', [poissonControler::class, 'update']);
+Route::delete('/poissons/{id}', [poissonControler::class, 'destroy']);
